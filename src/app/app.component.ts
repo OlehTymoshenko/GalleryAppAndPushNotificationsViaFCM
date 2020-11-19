@@ -48,12 +48,12 @@ export class AppComponent {
     this.fbX.subscribe("all"); 
     
     this.fbX.onMessageReceived().subscribe((message) => {
-      if(message.messageType === "notification") {
-        this.showAlert(JSON.stringify(message.notification));
-      }
-      
+      // if(message.messageType === "notification"){
+        // if(message.tap === "foreground"){
+            this.showAlert(message);
+        // }
+    // }
     });
-
   }
 
   private async showAlert(message : string) {
