@@ -51,12 +51,6 @@ export class AppComponent {
     });
     this.messagingFB.subscribe("all");
 
-    this.messagingFB.onMessage().subscribe(payload => {
-      if(payload.notification) {
-        this.showAlert(JSON.stringify(payload.notification));
-      }
-    });
-
     PushNotifications.addListener('pushNotificationReceived',
     (notification: PushNotification) => {
       this.showAlert('Push received: ' + JSON.stringify(notification));
@@ -66,7 +60,7 @@ export class AppComponent {
 
   private async showAlert(message : string) {
     const alert = await this.alertController.create({
-      header: 'Push notification',
+      header: 'Notification',
       message: message,
       buttons: ['OK']
     });
