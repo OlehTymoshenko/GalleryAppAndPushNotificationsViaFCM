@@ -23,6 +23,7 @@ export class PhotoService {
     this.platform = platform;
    }
   
+   // load photos from cache (local storage etc.)
   public async loadSaved() {
     const photoArray = await Storage.get({
       key: this.PHOTO_STORAGE
@@ -44,6 +45,7 @@ export class PhotoService {
 
   }
 
+  // add new photo
   public async addNewToGallery() {
     // take a photo
     const capturedPhoto = await Camera.getPhoto({
@@ -65,6 +67,7 @@ export class PhotoService {
 
   }
 
+  // save photo
   public async savePicture(cameraPhoto: CameraPhoto) {
     // convert photo to base64 format
     const photoAsBase64 = await this.readAsBase64(cameraPhoto);
@@ -90,6 +93,7 @@ export class PhotoService {
       };
     }
   }
+  
   
   private async readAsBase64(cameraPhoto: CameraPhoto) {
     if(this.platform.is("hybrid")) {

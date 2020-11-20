@@ -3,11 +3,11 @@ import { PhotoService } from '../shared/services/photo.service';
 
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-tab-photo',
+  templateUrl: 'tab-photo.page.html',
+  styleUrls: ['tab-photo.page.scss']
 })
-export class Tab2Page {
+export class TabPhotoPage {
 
   constructor(
     public photoService : PhotoService

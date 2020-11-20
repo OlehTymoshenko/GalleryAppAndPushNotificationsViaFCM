@@ -46,25 +46,30 @@ export class AppComponent {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register();
       } else {
-        // Show some error
+        // error is iOS here
       }
     });
     this.messagingFB.subscribe("all");
 
     PushNotifications.addListener('pushNotificationReceived',
-    (notification: PushNotification) => {
-      this.showAlert('Push received: ' + JSON.stringify(notification));
-    }
-  );
+      (notification: PushNotification) => {
+        this.showAlert(notification);
+      }
+    );
   }
 
-  private async showAlert(message : string) {
+  private async showAlert(message : PushNotification) {
+
     const alert = await this.alertController.create({
-      header: 'Notification',
-      message: message,
+      header: message.title,
+      message: message.body,
       buttons: ['OK']
     });
 
-    await alert.present();
+    if(alert.message === undefined || alert.message === "" || alert.message === null)
+    {
+      return;
+    }
+    await alert.present();  
   }
 }
