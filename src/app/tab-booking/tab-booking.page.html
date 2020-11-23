@@ -7,17 +7,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
+  <ion-row style="height: 5vh;"></ion-row>
+
   <ion-item>
-    <ion-label>Pick date and time</ion-label>
-    <ion-datetime displayFormat="DDD, D MM YYYY" [min]="currentDateTime" max="2021"></ion-datetime>
+    <ion-label>Date and time</ion-label>
+    <ion-datetime displayFormat="DDD, D MM YYYY HH:mm" [min]="currentDateTime" [max]="maxDateTime" [value]="currentDateTime"
+      display-timezone="utc" ></ion-datetime>
   </ion-item>
   
+  <ion-row style="height: 5vh;"></ion-row>
 
   <ion-item>
     <ion-label>Duration</ion-label>
-    <ion-datetime displayFormat="HH:mm"></ion-datetime>
-  </ion-item>
-
-  <ion-button color="primary" expand="block"> Book a date </ion-button>
-
+    <ion-datetime displayFormat="HH:mm" value="01:00"></ion-datetime>
+  </ion-item>  
 </ion-content>
+
+<ion-footer>
+    <ion-button (click)="bookDateTime()" color="primary" expand="block"> Book a date </ion-button>
+</ion-footer>
