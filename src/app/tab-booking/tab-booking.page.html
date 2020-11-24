@@ -11,16 +11,23 @@
   <ion-row style="height: 5vh;"></ion-row>
 
   <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input type="text" [(ngModel)]="reservation.name"></ion-input>
+  </ion-item>
+
+  <ion-row style="height: 5vh;"></ion-row>
+
+  <ion-item>
     <ion-label>Date and time</ion-label>
     <ion-datetime displayFormat="DDD, D MM YYYY HH:mm" [min]="currentDateTime" [max]="maxDateTime" [value]="currentDateTime"
-      display-timezone="utc" ></ion-datetime>
+      display-timezone="utc" [(ngModel)]="reservation.reservationDateTime"></ion-datetime>
   </ion-item>
   
   <ion-row style="height: 5vh;"></ion-row>
 
   <ion-item>
     <ion-label>Duration</ion-label>
-    <ion-datetime displayFormat="HH:mm" value="01:00"></ion-datetime>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="reservation.duration"></ion-datetime>
   </ion-item>  
 </ion-content>
 

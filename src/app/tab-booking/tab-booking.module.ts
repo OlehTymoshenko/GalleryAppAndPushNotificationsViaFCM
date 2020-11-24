@@ -13,7 +13,7 @@ import { TabBookingPageRoutingModule } from './tab-booking-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    TabBookingPageRoutingModule
+    TabBookingPageRoutingModule,
   ],
   declarations: [TabBookingPage]
 })

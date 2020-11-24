@@ -1,6 +1,10 @@
-export interface Reservation {
-    id : string;
-    name: string;
-    dateTimeInISO: string;
-    duration: string
+export class Reservation {
+constructor (
+    public name : string,
+    public reservationDateTime : string,
+    public duration : string,
+    public id? : string,
+    ) {
+
+}
 }
