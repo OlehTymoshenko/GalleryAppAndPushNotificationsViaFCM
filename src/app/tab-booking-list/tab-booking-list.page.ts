@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { Reservation } from '../shared/models/reservation';
 import { BookingService } from './../shared/services/booking.service';
 
@@ -11,15 +12,28 @@ import { BookingService } from './../shared/services/booking.service';
 })
 export class TabBookingListPage {
 
+  public destroyed = new Subject<any>();
   reservations : Observable<Reservation[]>;
 
   constructor(
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private router : Router
     ) {}
 
   ngOnInit() {
-    this.loadRevervations();
+    this.router.events.pipe(
+      filter((event : RouterEvent) => event instanceof NavigationEnd), 
+      takeUntil(this.destroyed)
+    ).subscribe(() => {
+      this.loadRevervations();
+    })
   }
+
+  ngOnDestroy() : void {
+    this.destroyed.next();
+    this.destroyed.complete();    
+  }
+
 
   private loadRevervations()
   {

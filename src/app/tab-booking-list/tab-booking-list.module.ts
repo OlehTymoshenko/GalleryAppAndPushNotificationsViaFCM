@@ -15,6 +15,7 @@ import { TabBookingListPageRoutingModule } from './tab-booking-list-routing.modu
     FormsModule,
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: TabBookingListPage }]),
+    
     TabBookingListPageRoutingModule,
   ],
   declarations: [TabBookingListPage]

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { error } from 'protractor';
 
 import { Reservation } from '../shared/models/reservation';
 import { BookingService } from './../shared/services/booking.service';
@@ -34,12 +35,12 @@ export class TabBookingPage {
     if((this.reservation.name !== "") && 
         (this.reservation.duration !== "") && 
         (this.reservation.reservationDateTime !== "")) {
-          console.log(this.reservation.duration);
-          //let durationObj = new Date(this.reservation.duration);
-          //this.reservation.duration = durationObj.getUTCHours()+":"+durationObj.getUTCMinutes();
-
-          console.log(JSON.stringify(this.reservation));
-          this.bookingService.addReservation(this.reservation);
+          this.bookingService.addReservation(this.reservation).subscribe(data => {
+            alert("Reservation added successfully");
+          },
+          error => {
+            alert("Error! Failed to add new reservation");
+          });
           this.resetInputFields();
         }
   }
